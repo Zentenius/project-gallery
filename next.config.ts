@@ -9,7 +9,10 @@ const nextConfig: NextConfig = {
   // Add these for better compatibility
   trailingSlash: true,
   basePath: "",
-  assetPrefix: "",
+  // Use absolute URLs for assets in production to fix Unreal web widget issues
+  assetPrefix: process.env.NODE_ENV === "production" 
+    ? "https://project-gallery-rho.vercel.app" 
+    : "",
   // Disable newer JS features that might not work in old Chromium
   compiler: {
     // Remove unused imports
